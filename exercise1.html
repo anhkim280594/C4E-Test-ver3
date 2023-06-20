@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 100px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>nhập 2 số a và b</h1>
+
+    <form id="inputNumber">
+        <label for="number1">Số a:</label>
+        <input type="text" id="number1" required>
+
+        <label for="number2">Số b:</label>
+        <input type="text" id="number2" required>
+
+        <button type="submit">Tính tổng</button>
+    </form>
+
+    <div id="result"></div>
+    <script>
+        let number1 = parseInt(document.getElementById("number1").value);
+        let number2 = parseInt(document.getElementById("number2").value);
+        document.getElementById("inputNumber").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let sum = getSumOfPrimes(number1, number2);
+            document.getElementById("result").textContent = "Tổng các số nguyên tố trong khoảng từ " + number1 + " đến " + number2 + " là: " + sum;
+        });
+
+        function isPrime(number) {
+            if (number < 2 || number1 > number2) {
+                return false;
+            }
+            for (let i = 2; i <= Math.sqrt(number); i++) {
+                if (number % i === 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function getSumOfPrimes(a, b) {
+            let sum = 0;
+            for (let i = a; i <= b; i++) {
+                if (isPrime(i)) {
+                    sum += i;
+                }
+            }
+            return sum;
+        }
+    </script>
+</body>
+
+</html>
